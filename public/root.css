@@ -1,4 +1,6 @@
 :root {
     --light: rgb(237, 237, 221);
+    --dark-light: rgb(214, 214, 199);
     --dark: #10222E;
+    --light-dark: #163041;
 }

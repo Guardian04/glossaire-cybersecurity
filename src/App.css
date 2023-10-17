@@ -17,57 +17,63 @@
     z-index: 999;
 }
 
-.logo.left {
-    animation: logoAnimationLeft 1.5s forwards ease-in-out;
+.logo.right.show {
+    animation: showRightLogo 2s forwards ease-in-out;
 }
 
-@keyframes logoAnimationLeft {
-    0% {
+@keyframes showRightLogo {
+    0%, 25% {
+        opacity: 0;
+        right: -5%;
+    }
+    100% {
         opacity: 1;
-        left: auto;
         right: 5%;
     }
-    33% {
+}
+
+.logo.left.show {
+    animation: showLeftLogo 2s forwards ease-in-out;
+}
+
+@keyframes showLeftLogo {
+    0%, 25% {
         opacity: 0;
-        left: auto;
-        right: 5%;
-    }
-    66% {
-        opacity: 0;
-        left: 5%;
-        right: auto;
+        left: -5%;
     }
     100% {
         opacity: 1;
         left: 5%;
-        right: auto;
     }
 }
 
-.logo.right {
-    animation: logoAnimationRight 1.5s forwards ease-in-out;
+.logo.right.hidden {
+    animation: maskRightLogo 0.8s forwards ease-in-out;
 }
 
-@keyframes logoAnimationRight {
+@keyframes maskRightLogo {
     0% {
         opacity: 1;
-        left: 5%;
-        right: auto;
-    }
-    33% {
-        opacity: 0;
-        left: 5%;
-        right: auto;
-    }
-    66% {
-        opacity: 0;
-        left: auto;
         right: 5%;
     }
     100% {
+        opacity: 0;
+        right: -5%;
+    }
+}
+
+.logo.left.hidden {
+    animation: maskLeftLogo 0.8s forwards ease-in-out;
+}
+
+@keyframes maskLeftLogo {
+    0% {
         opacity: 1;
-        left: auto;
-        right: 5%;
+        left: 5%;
+    }
+    100% {
+        opacity: 0;
+        left: -5%;
     }
 }
 
@@ -76,11 +82,20 @@
     height: 100%;
 }
 
+@keyframes hiddeLogo {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 .content {
     position: relative;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 68%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -95,6 +110,14 @@
 .content.not-hover {
     width: 32%;
     filter: brightness(50%);
+}
+
+.content.open {
+    width: 100%;
+}
+
+.content.close {
+    width: 0%;
 }
 
 .content h1 {
@@ -128,15 +151,21 @@
     transform: translateX(10%);
 }
 
+.glossaire.center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .glossaire h1 {
     -webkit-text-stroke: 5px;
     color: transparent;
     font-size: 9rem;
+    white-space: nowrap;
     transition: -webkit-text-stroke-color 1.5s ease-in-out;
 }
 
 .glossaire.right h1 {
-    -webkit-text-stroke-color: var(--dark);
+    -webkit-text-stroke-color: green;
 }
 
 .glossaire.left h1 {
@@ -170,6 +199,14 @@
     background-color: var(--dark);
 }
 
+.arrow.right.reverse {
+    left: calc(100% - 10px);
+}
+
+.arrow.left.reverse {
+    left: 10px;
+}
+
 .arrow-content {
     position: relative;
     top: 0;
@@ -182,7 +219,7 @@
     transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
 }
 
-.arrow.right:hover .arrow-content {
+.arrow.right:hover .arrow-content, .arrow.left.reverse:hover .arrow-content {
     animation: rightArrowMove 2s ease-in-out infinite;
 }
 
@@ -201,7 +238,7 @@
     }
 }
 
-.arrow.left:hover .arrow-content {
+.arrow.left:hover .arrow-content, .arrow.right.reverse:hover .arrow-content {
     animation: leftArrowMove 1.5s ease-in-out infinite;
 }
 
@@ -229,29 +266,29 @@
 }
 
 .arrow.right .arrow-content span {
-    background-color: var(--dark);
+    background-color: green;
 }
 
 .arrow.left .arrow-content span {
     background-color: #FFA500;
 }
 
-.arrow.right span:nth-child(1) {
+.arrow.right span:nth-child(1), .arrow.left.reverse span:nth-child(1) {
     width: 50%;
     transform: rotate(45deg) translate(5px, -35px);
 }
 
-.arrow.right span:nth-child(3) {
+.arrow.right span:nth-child(3), .arrow.left.reverse span:nth-child(3) {
     width: 50%;
     transform: rotate(-45deg) translate(5px, 35px);
 }
 
-.arrow.left span:nth-child(1) {
+.arrow.left span:nth-child(1), .arrow.right.reverse span:nth-child(1){
     width: 50%;
     transform: rotate(-45deg) translate(-5px, -35px);
 }
 
-.arrow.left span:nth-child(3) {
+.arrow.left span:nth-child(3), .arrow.right.reverse span:nth-child(3) {
     width: 50%;
     transform: rotate(45deg) translate(-5px, 35px);
 }
@@ -260,7 +297,6 @@
     position: absolute;
     top: 0;
     height: 100%;
-    opacity: 0;
     transition: opacity 1.5s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -275,10 +311,33 @@
 
 .team-left {
     left: 0;
+    color: var(--dark);
 }
 
 .team-right.show, .team-left.show {
-    opacity: 1;
+    animation: showTeam 1.5s forwards ease-in-out;
+}
+
+@keyframes showTeam {
+    0%, 50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.team-right.hidden, .team-left.hidden {
+    animation: hiddenTeam 1.5s forwards ease-in-out;
+}
+
+@keyframes hiddenTeam {
+    0% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
 }
 
 .team-top, .team-bottom {
@@ -295,7 +354,77 @@
     border-bottom: 5px solid #FFA500;
 }
 
+.team-left .team-top h3 {
+    color: green;
+    border-bottom-color: green;
+}
+
 .team-top span, .team-bottom span {
     font-size: 1.8rem;
     margin-bottom: 0.75rem;
+}
+
+.intro-content {
+    position: absolute;
+    top: 60%;
+    padding: 35px;
+    width: 40rem;
+    border-radius: 15px;
+    box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(100%);
+    background-color: #FFA500;
+}
+
+.intro-content.show {
+    animation: showIntroContent 1.5s forwards ease-in-out;
+    animation-delay: 0.5s;
+}
+
+@keyframes showIntroContent {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro-content.hidden {
+    animation: hiddenIntroContent 1.5s forwards ease-in-out;
+}
+
+@keyframes hiddenIntroContent {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50%, 100% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+
+.content.debutant .intro-content {
+    background-color: var(--dark-light);
+}
+
+.content.expert .intro-content {
+    background-color: var(--light-dark);
+}
+
+.intro-content p {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: justify;
+}
+
+.content.debutant .intro-content {
+    color: var(--light-dark);
+}
+
+.content.expert .intro-content {
+    color: var(--dark-light);
 }
