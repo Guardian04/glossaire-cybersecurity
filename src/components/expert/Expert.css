@@ -1,0 +1,7 @@
+.content.expert {
+    background-color: var(--dark);
+}
+
+.content.expert h1 {
+    color: var(--light);
+}

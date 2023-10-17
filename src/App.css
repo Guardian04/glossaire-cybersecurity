@@ -1,38 +1,190 @@
-.App {
-  text-align: center;
+.app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 1.5s ease-in-out, filter 1.5s ease-in-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.content.is-hover {
+    width: 68%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.content.not-hover {
+    width: 32%;
+    filter: brightness(50%);
 }
 
-.App-link {
-  color: #61dafb;
+.content h1 {
+    font-size: 5rem;
+    transition: font-size 1.5s ease-in-out, filter 1.5s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.content.is-hover h1 {
+    font-size: 7rem;
+}
+
+.content.not-hover h1 {
+    filter: blur(8px);
+}
+
+
+.glossaire {
+    position: absolute;
+    top: 8%;
+    transition: transform 1.5s ease-in-out, left 1.5s ease-in-out;
+    z-index: 999;
+}
+
+.glossaire.right {
+    left: 68%;
+    transform: translateX(-110%);
+}
+
+.glossaire.left {
+    left: 32%;
+    transform: translateX(10%);
+}
+
+.glossaire h1 {
+    -webkit-text-stroke: 5px;
+    color: transparent;
+    font-size: 9rem;
+    transition: -webkit-text-stroke-color 1.5s ease-in-out;
+}
+
+.glossaire.right h1 {
+    -webkit-text-stroke-color: var(--dark);
+}
+
+.glossaire.left h1 {
+    -webkit-text-stroke-color: #FFA500;
+}
+
+.arrow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+    transition: left 1.5s ease-in-out, background-color 1.5s ease-in-out, box-shadow 1.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.arrow.right {
+    left: 68%;
+    box-shadow: -6px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: var(--light);
+}
+
+.arrow.left {
+    left: 32%;
+    box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: var(--dark);
+}
+
+.arrow-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.arrow.right:hover .arrow-content {
+    animation: rightArrowMove 2s ease-in-out infinite;
+}
+
+@keyframes rightArrowMove {
+    0%, 80%, 100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    33% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    50% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.arrow.left:hover .arrow-content {
+    animation: leftArrowMove 1.5s ease-in-out infinite;
+}
+
+@keyframes leftArrowMove {
+    0%, 80%, 100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    33% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.arrow-content span {
+    position: absolute;
+    width: 70%;
+    height: 15px;
+    border-radius: 15px;
+    transition: transform 1.5s ease-in-out, background-color 1.5s ease-in-out;
+}
+
+.arrow.right .arrow-content span {
+    background-color: var(--dark);
+}
+
+.arrow.left .arrow-content span {
+    background-color: #FFA500;
+}
+
+.arrow.right span:nth-child(1) {
+    width: 50%;
+    transform: rotate(45deg) translate(5px, -35px);
+}
+
+.arrow.right span:nth-child(3) {
+    width: 50%;
+    transform: rotate(-45deg) translate(5px, 35px);
+}
+
+.arrow.left span:nth-child(1) {
+    width: 50%;
+    transform: rotate(-45deg) translate(-5px, -35px);
+}
+
+.arrow.left span:nth-child(3) {
+    width: 50%;
+    transform: rotate(45deg) translate(-5px, 35px);
 }
