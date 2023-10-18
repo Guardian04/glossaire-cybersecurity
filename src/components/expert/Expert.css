@@ -5,3 +5,41 @@
 .content.expert h1 {
     color: var(--light);
 }
+
+.sommaire {
+    position: absolute;
+    top: 60%;
+    width: 1200px;
+}
+
+.sommaire ul {
+    position: relative;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sommaire ul li {
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.sommaire ul li#elt-0 {
+    background-color: rgb(19, 19, 152);
+}
+
+.sommaire ul li#elt-1 {
+    background-color: purple;
+}
+
+.sommaire ul li#elt-2 {
+    background-color: rgb(139, 0, 0);
+}
+
+.sommaire ul li h3 {
+    font-size: 3rem;
+    color: var(--light);
+}

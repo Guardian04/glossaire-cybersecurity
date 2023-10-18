@@ -13,6 +13,8 @@ interface Props {
 };
 
 const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion } : Props) => {
+    const expertSommaire = ["Blue Team", "Purple Team", "Red Team"]
+
     useEffect(() => {
         const element = document.getElementById("expert-title");
         let typedExpert: Typed | undefined;
@@ -45,7 +47,7 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
     return (
         <div className={`content expert ${isHover ? "is-hover" : "not-hover"} ${openOrNot(openLevel)}`} onMouseOver={() => onMouseOver()}>
             <h1 id="expert-title"></h1>
-            <div className={`intro-content ${isHover ? "show" : "hidden"}`}>
+            <div className={`intro-content ${isHover ? "show" : "hidden"} ${openOrNot(openLevel)}`}>
                 <p>
                     Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, 
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 
@@ -53,6 +55,17 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
                     Eusebius vero obiecta fidentius negans, suspensus in eodem gradu constantiae stetit latrocinium illud esse, 
                     non iudicium clamans.
                 </p>
+            </div>
+            <div className="sommaire">
+                <ul>
+                    {expertSommaire.map((elt, index) => {
+                        return (
+                            <li key={index} id={`elt-${index}`}>
+                                <h3>{elt}</h3>
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
             <div className={`team-right ${isHover ? "hidden" : "show"}`} style={{width: `${windowWidth * 0.32}px`}}>
                 <div className="team-top">

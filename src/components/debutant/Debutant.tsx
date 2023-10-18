@@ -45,7 +45,7 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
     return (
         <div className={`content debutant ${isHover ? "is-hover" : "not-hover"} ${openOrNot(openLevel)}`} onMouseOver={() => onMouseOver()}>
             <h1 id="debutant-title"></h1>
-            <div className={`intro-content ${isHover ? "show" : "hidden"}`}>
+            <div className={`intro-content ${isHover ? "show" : "hidden"} ${openOrNot(openLevel)}`}>
                 <p>
                     Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, 
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 

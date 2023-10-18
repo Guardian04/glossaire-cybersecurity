@@ -376,7 +376,7 @@
     background-color: #FFA500;
 }
 
-.intro-content.show {
+.intro-content.show,  .intro-content.close{
     animation: showIntroContent 1.5s forwards ease-in-out;
     animation-delay: 0.5s;
 }
@@ -392,7 +392,7 @@
     }
 }
 
-.intro-content.hidden {
+.intro-content.hidden, .intro-content.open {
     animation: hiddenIntroContent 1.5s forwards ease-in-out;
 }
 
