@@ -11,9 +11,11 @@ interface Props {
     openLevel: number;
     openOrNot: (value: number) => string;
     openGestion: boolean;
+    onClick: () => void;
+    open: boolean;
 };
 
-const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion } : Props) => {
+const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open } : Props) => {
     useEffect(() => {
         const element = document.getElementById("expert-title");
         let typedExpert: Typed | undefined;
@@ -51,7 +53,7 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 
                     quae nulla erant, fuisse firmavit cum nec vidisset quicquam nec audisset penitus expers forensium rerum; 
                     Eusebius vero obiecta fidentius negans, suspensus in eodem gradu constantiae stetit latrocinium illud esse, 
-                    non iudicium clamans. <span className="read-more" id="expert">voir plus</span>
+                    non iudicium clamans. <span className="read-more" id="expert" onClick={() => onClick()}>voir plus</span>
                 </p>
             </div>
             <div className={`team-right ${isHover ? "hidden" : "show"}`} style={{width: `${windowWidth * 0.32}px`}}>
@@ -73,7 +75,7 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
                     })}
                 </div>
             </div>
-            <Menu level={true} showMenu={openLevel} />
+            <Menu level={true} showMenu={openLevel} onClick={onClick} open={open} />
         </div>
     );
 };

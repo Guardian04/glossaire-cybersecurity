@@ -13,6 +13,11 @@ function App() {
     const [openExpert, setExpertOpen] = useState(0);
     const [disableHandlers, setDisableHandlers] = useState(false);
     const openGestion = (openDebutant !== 0 || openExpert !== 0);
+    const [open, setOpen] = useState(false);
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
 
     useEffect(() => {
         const handleWindowResize = () => {
@@ -126,8 +131,8 @@ function App() {
                     <span></span>
                 </div>
             </div>
-            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} />
-            <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} />
+            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open}/>
+            <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open}/>
         </div>
     );
 }

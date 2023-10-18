@@ -5,6 +5,15 @@
     height: calc(100% - 60px);
     border-radius: 15px;
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+    transition: width 1s ease-in-out;
+}
+
+.menu.open#debutant {
+    width: 250px;
+}
+
+.menu.open#expert {
+    width: 325px;
 }
 
 .menu.show {
