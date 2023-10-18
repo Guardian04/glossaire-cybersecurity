@@ -18,9 +18,8 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
         let typedDebutant: Typed | undefined;
       
         if (openGestion) {
-            const text = "Sommaire";
             const options = {
-                strings: [text],
+                strings: ["Sommaire"],
                 typeSpeed: 100,
                 backSpeed: 30,
                 backDelay: 500,
@@ -45,13 +44,13 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
     return (
         <div className={`content debutant ${isHover ? "is-hover" : "not-hover"} ${openOrNot(openLevel)}`} onMouseOver={() => onMouseOver()}>
             <h1 id="debutant-title"></h1>
-            <div className={`intro-content ${isHover ? "show" : "hidden"} ${openOrNot(openLevel)}`}>
+            <div className={`intro-content ${isHover ? "show" : "hidden"}`}>
                 <p>
                     Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, 
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 
                     quae nulla erant, fuisse firmavit cum nec vidisset quicquam nec audisset penitus expers forensium rerum; 
                     Eusebius vero obiecta fidentius negans, suspensus in eodem gradu constantiae stetit latrocinium illud esse, 
-                    non iudicium clamans.
+                    non iudicium clamans. <span className="read-more" id="debutant">voir plus</span>
                 </p>
             </div>
             <div className={`team-left ${isHover ? "hidden" : "show"}`} style={{width: `${windowWidth * 0.32}px`}}>

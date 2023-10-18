@@ -13,16 +13,13 @@ interface Props {
 };
 
 const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion } : Props) => {
-    const expertSommaire = ["Blue Team", "Purple Team", "Red Team"]
-
     useEffect(() => {
         const element = document.getElementById("expert-title");
         let typedExpert: Typed | undefined;
       
         if (openGestion) {
-            const text = "Sommaire";
             const options = {
-                strings: [text],
+                strings: ["Sommaire"],
                 typeSpeed: 100,
                 backSpeed: 30,
                 backDelay: 500,
@@ -47,25 +44,14 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
     return (
         <div className={`content expert ${isHover ? "is-hover" : "not-hover"} ${openOrNot(openLevel)}`} onMouseOver={() => onMouseOver()}>
             <h1 id="expert-title"></h1>
-            <div className={`intro-content ${isHover ? "show" : "hidden"} ${openOrNot(openLevel)}`}>
-                <p>
+            <div className={`intro-content ${isHover ? "show" : "hidden"}`}>
+                <p id="expert-sommaire">
                     Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, 
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 
                     quae nulla erant, fuisse firmavit cum nec vidisset quicquam nec audisset penitus expers forensium rerum; 
                     Eusebius vero obiecta fidentius negans, suspensus in eodem gradu constantiae stetit latrocinium illud esse, 
-                    non iudicium clamans.
+                    non iudicium clamans. <span className="read-more" id="expert">voir plus</span>
                 </p>
-            </div>
-            <div className="sommaire">
-                <ul>
-                    {expertSommaire.map((elt, index) => {
-                        return (
-                            <li key={index} id={`elt-${index}`}>
-                                <h3>{elt}</h3>
-                            </li>
-                        );
-                    })}
-                </ul>
             </div>
             <div className={`team-right ${isHover ? "hidden" : "show"}`} style={{width: `${windowWidth * 0.32}px`}}>
                 <div className="team-top">

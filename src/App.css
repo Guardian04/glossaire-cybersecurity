@@ -376,7 +376,7 @@
     background-color: #FFA500;
 }
 
-.intro-content.show,  .intro-content.close{
+.intro-content.show {
     animation: showIntroContent 1.5s forwards ease-in-out;
     animation-delay: 0.5s;
 }
@@ -392,7 +392,7 @@
     }
 }
 
-.intro-content.hidden, .intro-content.open {
+.intro-content.hidden {
     animation: hiddenIntroContent 1.5s forwards ease-in-out;
 }
 
@@ -427,4 +427,31 @@
 
 .content.expert .intro-content {
     color: var(--dark-light);
+}
+
+.read-more {
+    cursor: pointer;
+    filter: brightness(75%);
+    border-bottom: 2px solid transparent;
+    transition: filter 0.3s ease-in-out, border-bottom-color 0.3s ease-in-out;
+}
+
+.read-more#debutant {
+    color: green;
+}
+
+.read-more#expert {
+    color: #FFA500;
+}
+
+.read-more:hover {
+    filter: brightness(100%);
+}
+
+.read-more#debutant:hover {
+    border-bottom-color: green;
+}
+
+.read-more#expert:hover {
+    border-bottom-color: #FFA500;
 }
