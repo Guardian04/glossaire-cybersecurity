@@ -116,7 +116,6 @@ function App() {
             <div className={`logo ${debutantIsHover ? "left" : "right"} ${openGestion ? "hidden" : "show"}`}>
                 <img src="img/DGSI.png" alt="Logo DGSI" />
             </div>
-            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} />
             <div className={`glossaire ${debutantIsHover ? "right" : "left"} ${openGestion ? "center" : ""}`}>
                 <h1>Glossaire <span id="glossaire"></span></h1>
             </div>
@@ -127,6 +126,7 @@ function App() {
                     <span></span>
                 </div>
             </div>
+            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} />
             <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} />
         </div>
     );

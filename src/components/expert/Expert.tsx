@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Typed from "typed.js";
 import "./Expert.css";
 import { teamTOP, teamBOTTOM } from "../../data/TeamData";
+import Menu from "../menu/Menu";
 
 interface Props {
     isHover: boolean;
@@ -72,6 +73,7 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
                     })}
                 </div>
             </div>
+            <Menu level={true} showMenu={openLevel} />
         </div>
     );
 };

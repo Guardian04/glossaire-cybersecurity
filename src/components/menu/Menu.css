@@ -1,0 +1,44 @@
+.menu {
+    position: absolute;
+    top: 30px;
+    width: 70px;
+    height: calc(100% - 60px);
+    border-radius: 15px;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.menu.show {
+    animation: showMenu 1s forwards ease-in-out;
+}
+
+@keyframes showMenu {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.menu.hidde {
+    animation: hiddeMenu 1s forwards ease-in-out;
+}
+
+@keyframes hiddeMenu {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.menu#debutant {
+    left: 15px;
+    background-color: var(--dark-light);
+}
+
+.menu#expert {
+    right: 15px;
+    background-color: var(--light-dark);
+}

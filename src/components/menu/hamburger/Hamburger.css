@@ -1,0 +1,46 @@
+.hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    box-shadow: 6px 0 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger#debutant {
+    background-color: #1a394e;
+}
+
+.hamburger#expert {
+    background-color: #FFA500;
+}
+
+.hamburger span {
+    position: absolute;
+    width: 35px;
+    height: 5px;
+    border-radius: 5px;
+}
+
+.hamburger#debutant span {
+    background-color: var(--dark-light);
+}
+
+.hamburger#expert span {
+    background-color: var(--light-dark);
+}
+
+.hamburger span:nth-child(1) {
+    transform: translateY(-12px);
+}
+
+.hamburger span:nth-child(3) {
+    transform: translateY(12px);
+}
+
+.hamburger:hover span {
+    background-color: red;
+}

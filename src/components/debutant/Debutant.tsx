@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Typed from "typed.js";
 import "./Debutant.css";
 import { teamTOP, teamBOTTOM } from "../../data/TeamData";
+import Menu from "../menu/Menu";
 
 interface Props {
     isHover: boolean;
@@ -72,6 +73,7 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
                     })}
                 </div>
             </div>
+            <Menu level={false} showMenu={openLevel} />
         </div>
     );
 };
