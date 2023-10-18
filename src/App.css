@@ -24,7 +24,7 @@
 @keyframes showRightLogo {
     0%, 25% {
         opacity: 0;
-        right: -5%;
+        right: -10%;
     }
     100% {
         opacity: 1;
@@ -39,7 +39,7 @@
 @keyframes showLeftLogo {
     0%, 25% {
         opacity: 0;
-        left: -5%;
+        left: -10%;
     }
     100% {
         opacity: 1;
@@ -58,7 +58,7 @@
     }
     100% {
         opacity: 0;
-        right: -5%;
+        right: -10%;
     }
 }
 
@@ -73,7 +73,7 @@
     }
     100% {
         opacity: 0;
-        left: -5%;
+        left: -10%;
     }
 }
 
@@ -321,9 +321,11 @@
 @keyframes showTeam {
     0%, 50% {
         opacity: 0;
+        transform: translateY(-100%);
     }
     100% {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -334,9 +336,11 @@
 @keyframes hiddenTeam {
     0% {
         opacity: 1;
+        transform: translateY(0);
     }
     50%, 100% {
         opacity: 0;
+        transform: translateY(-100%);
     }
 }
 
