@@ -6,8 +6,10 @@ interface Props {
 
 const Hamburger = ({ level } : Props) => {
     return (
-        <div className="hamburher" id={`${level ? "expert" : "debutant"}`}>
-            
+        <div className="hamburger" id={`${level ? "expert" : "debutant"}`}>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     );
 };
