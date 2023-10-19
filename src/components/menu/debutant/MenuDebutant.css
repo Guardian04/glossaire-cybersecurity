@@ -43,7 +43,7 @@
     color: var(--light-dark);
 }
 
-.content-menu-sommaire#debutant .menu-sommaire-item-title:hover {
+.content-menu-sommaire#debutant .menu-sommaire-item-title:hover, .content-menu-sommaire#debutant .menu-sommaire-item.selected {
     background-color: rgb(195, 195, 182);
 }
 
@@ -53,6 +53,11 @@
     left: -53px;
     font-size: 2rem;
     font-weight: 600;
+    transition: top 1s ease-in-out;
+}
+
+.menu-sommaire-title.close {
+    top: -125px
 }
 
 .menu-sommaire-title#debutant {

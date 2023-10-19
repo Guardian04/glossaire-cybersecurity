@@ -28,7 +28,7 @@ const MenuDebutant = ({ open, indexMenuDebutant, setIndexMenuDebutant } : Props)
                 }
             }, 1000);
         }
-    };
+    }; 
 
     return (
         <div className="content-menu-sommaire" id="debutant">
@@ -36,7 +36,7 @@ const MenuDebutant = ({ open, indexMenuDebutant, setIndexMenuDebutant } : Props)
             <div className="menu-sommaire">
                 {DebutantSommaire.map((elt, index) => {
                     return (
-                        <div className={`menu-sommaire-item ${open ? "show" : "hidde"}`} id={`key-${index}`} key={index} onClick={() => onClick(index)}>
+                        <div className={`menu-sommaire-item ${open ? "show" : "hidde"} ${index === indexMenuDebutant ? "selected" : ""}`} id={`key-${index}`} key={index} onClick={() => onClick(index)}>
                             <div className="menu-sommaire-item-title">{elt}</div>
                         </div>
                     );
