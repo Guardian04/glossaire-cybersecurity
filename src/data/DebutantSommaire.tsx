@@ -5,9 +5,11 @@ const DebutantSommaire = [
     "Sécurité Applications",
     "Sécurité des Données",
     "Sécurité des Systèmes d'Exploitation",
-    "Sécurité du CLoud",
+    "Sécurité du Cloud",
     "Sécurité Mobile",
-    "Objects Connectés (IoT)"
+    "Objects Connectés (IoT)",
+    "Authentification et Contrôle d'Accès",
+    "Législation et Conformité"
 ]
 
 export default DebutantSommaire;

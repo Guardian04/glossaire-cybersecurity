@@ -53,7 +53,7 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 
                     quae nulla erant, fuisse firmavit cum nec vidisset quicquam nec audisset penitus expers forensium rerum; 
                     Eusebius vero obiecta fidentius negans, suspensus in eodem gradu constantiae stetit latrocinium illud esse, 
-                    non iudicium clamans. <span className="read-more" id="debutant" onClick={() => onClick()}>voir plus</span>
+                    non iudicium clamans. <span className={`read-more ${openOrNot(openLevel)}`} id="debutant" onClick={openGestion ? () => onClick() : undefined}>voir plus</span>
                 </p>
             </div>
             <div className={`team-left ${isHover ? "hidden" : "show"}`} style={{width: `${windowWidth * 0.32}px`}}>

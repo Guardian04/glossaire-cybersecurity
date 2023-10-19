@@ -3,6 +3,7 @@ import Typed from "typed.js";
 import "./App.css";
 import Debutant from "./components/debutant/Debutant";
 import Expert from "./components/expert/Expert";
+import DebutantContent from "./components/debutant/content/DebutantContent";
 import "./data/TeamData";
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
                 const handle = openDebutant === 1 ? true : false;
                 setDebutantOpen(0);
                 setExpertOpen(0);
+                setOpen(false);
                 setDebutantIsHover(!handle);
                 setExpertIsHover(handle);
             } else {
@@ -133,6 +135,7 @@ function App() {
             </div>
             <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open}/>
             <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open}/>
+            <DebutantContent />
         </div>
     );
 }
