@@ -46,3 +46,21 @@
 .content-menu-sommaire#debutant .menu-sommaire-item-title:hover {
     background-color: rgb(195, 195, 182);
 }
+
+.menu-sommaire-title {
+    position: absolute;
+    top: 100px;
+    left: -53px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.menu-sommaire-title#debutant {
+    transform: rotate(-90deg);
+    color: var(--light-dark);
+}
+
+.menu-sommaire-title#expert {
+    transform: rotate(90deg);
+    color: var(--dark-light);
+}

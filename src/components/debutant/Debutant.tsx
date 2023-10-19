@@ -3,6 +3,7 @@ import Typed from "typed.js";
 import "./Debutant.css";
 import { teamTOP, teamBOTTOM } from "../../data/TeamData";
 import Menu from "../menu/Menu";
+import DebutantContent from "./content/DebutantContent";
 
 interface Props {
     isHover: boolean;
@@ -13,9 +14,11 @@ interface Props {
     openGestion: boolean;
     onClick: () => void;
     open: boolean;
+    indexMenuDebutant: number | null;
+    setIndexMenuDebutant: (index: number | null) => void;
 };
 
-const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open } : Props) => {
+const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant } : Props) => {
     useEffect(() => {
         const element = document.getElementById("debutant-title");
         let typedDebutant: Typed | undefined;
@@ -46,8 +49,8 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
 
     return (
         <div className={`content debutant ${isHover ? "is-hover" : "not-hover"} ${openOrNot(openLevel)}`} onMouseOver={() => onMouseOver()}>
-            <h1 id="debutant-title"></h1>
-            <div className={`intro-content ${isHover ? "show" : "hidden"}`}>
+            <h1 id="debutant-title" className={`${indexMenuDebutant === null ? "show" : "hidden"}`}></h1>
+            <div className={`intro-content ${isHover ? "show" : "hidden"} ${indexMenuDebutant === null ? "open" : "close"}`}>
                 <p>
                     Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, 
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 
@@ -75,7 +78,8 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
                     })}
                 </div>
             </div>
-            <Menu level={false} showMenu={openLevel} onClick={onClick} open={open} />
+            <DebutantContent indexMenuDebutant={indexMenuDebutant} />
+            <Menu level={false} showMenu={openLevel} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} />
         </div>
     );
 };

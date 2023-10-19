@@ -1,9 +1,13 @@
 import "./DebutantContent.css";
 import DebutantSommaire from "../../../data/DebutantSommaire";
 
-const DebutantContent = () => {
+interface Props {
+    indexMenuDebutant: number | null;
+};
+
+const DebutantContent = ({ indexMenuDebutant } : Props) => {
     return (
-        <div className="main-container" id="debutant">
+        <div className={`main-container ${indexMenuDebutant === null ? "close" : "open"}`} id="debutant">
             {DebutantSommaire.map((title, index) => {
                 return (
                     <section key={index} id={`debutant-title-${index}`} className="main-content">

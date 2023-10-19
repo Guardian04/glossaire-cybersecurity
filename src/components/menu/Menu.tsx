@@ -8,13 +8,15 @@ interface Props {
     showMenu: number;
     onClick: () => void;
     open: boolean;
+    indexMenuDebutant: number | null;
+    setIndexMenuDebutant: (index: number | null) => void;
 };
 
-const Menu = ({ level, showMenu, onClick, open } : Props) => {
+const Menu = ({ level, showMenu, onClick, open, indexMenuDebutant, setIndexMenuDebutant } : Props) => {
     return (
         <div className={`menu ${showMenu === 1 ? "show" : "hidde"} ${open ? "open" : ""}`} id={`${level ? "expert" : "debutant"}`}>
             <Hamburger level={level} onClick={onClick} open={open} />
-            {!level ? <MenuDebutant open={open} /> : <MenuExpert open={open} />}
+            {!level ? <MenuDebutant open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} /> : <MenuExpert open={open} />}
         </div>
     );
 };

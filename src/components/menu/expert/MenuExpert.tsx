@@ -15,6 +15,7 @@ const MenuExpert = ({ open } : Props) => {
 
     return (
         <div className="content-menu-sommaire">
+            <div className={`menu-sommaire-title ${open ? "close" : "open"}`} id="expert">SOMMAIRE</div>
             <div className="menu-sommaire">
                 {Object.keys(ExpertSommaire).map((key1, index) => {
                     return (

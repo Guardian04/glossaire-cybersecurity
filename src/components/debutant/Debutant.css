@@ -1,3 +1,11 @@
 .content.debutant {
     background-color: var(--light);
 }
+
+.content.debutant #debutant-title.show {
+    opacity: 1;
+}
+
+.content.debutant #debutant-title.hidden {
+    opacity: 0;
+}

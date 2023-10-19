@@ -13,9 +13,11 @@ interface Props {
     openGestion: boolean;
     onClick: () => void;
     open: boolean;
+    indexMenuDebutant: number | null;
+    setIndexMenuDebutant: (index: number | null) => void;
 };
 
-const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open } : Props) => {
+const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant} : Props) => {
     useEffect(() => {
         const element = document.getElementById("expert-title");
         let typedExpert: Typed | undefined;
@@ -75,7 +77,7 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
                     })}
                 </div>
             </div>
-            <Menu level={true} showMenu={openLevel} onClick={onClick} open={open} />
+            <Menu level={true} showMenu={openLevel} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} />
         </div>
     );
 };

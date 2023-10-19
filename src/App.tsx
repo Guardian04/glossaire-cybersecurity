@@ -3,7 +3,6 @@ import Typed from "typed.js";
 import "./App.css";
 import Debutant from "./components/debutant/Debutant";
 import Expert from "./components/expert/Expert";
-import DebutantContent from "./components/debutant/content/DebutantContent";
 import "./data/TeamData";
 
 function App() {
@@ -15,6 +14,7 @@ function App() {
     const [disableHandlers, setDisableHandlers] = useState(false);
     const openGestion = (openDebutant !== 0 || openExpert !== 0);
     const [open, setOpen] = useState(false);
+    const [indexMenuDebutant, setIndexMenuDebutant] = useState<number | null>(null);
 
     const handleClick = () => {
         setOpen(!open);
@@ -93,6 +93,7 @@ function App() {
                 setDebutantOpen(0);
                 setExpertOpen(0);
                 setOpen(false);
+                setIndexMenuDebutant(null);
                 setDebutantIsHover(!handle);
                 setExpertIsHover(handle);
             } else {
@@ -117,14 +118,13 @@ function App() {
         }
     };
 
-
     return (
         <div className="app">
             <div className={`logo ${debutantIsHover ? "left" : "right"} ${openGestion ? "hidden" : "show"}`}>
                 <img src="img/DGSI.png" alt="Logo DGSI" />
             </div>
             <div className={`glossaire ${debutantIsHover ? "right" : "left"} ${openGestion ? "center" : ""}`}>
-                <h1>Glossaire <span id="glossaire"></span></h1>
+                <h1 className={`${indexMenuDebutant === null ? "show" : "hidden"}`}>Glossaire <span id="glossaire"></span></h1>
             </div>
             <div className={`arrow ${debutantIsHover ? "right" : "left"} ${openGestion ? "reverse" : ""}`} onClick={() => toggleLevel()}>
                 <div className="arrow-content">
@@ -133,9 +133,8 @@ function App() {
                     <span></span>
                 </div>
             </div>
-            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open}/>
-            <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open}/>
-            <DebutantContent />
+            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} />
+            <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant}/>
         </div>
     );
 }
