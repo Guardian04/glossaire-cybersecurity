@@ -14,29 +14,31 @@ const MenuExpert = ({ open } : Props) => {
     };
 
     return (
-        <div className="menu-sommaire">
-            {Object.keys(ExpertSommaire).map((key1, index) => {
-                return (
-                    <div className={`menu-sommaire-item ${showSommaire[index] ? "open" : ""} ${open ? "show" : "hidde"}`} id={`key-${index}`} key={index}>
-                        <div className="menu-sommaire-item-title" onClick={() => toggleSommaire(index)}>
-                            <div className={`more-btn ${showSommaire[index] ? "open" : ""}`}>
-                                <span></span>
-                                <span></span>
+        <div className="content-menu-sommaire">
+            <div className="menu-sommaire">
+                {Object.keys(ExpertSommaire).map((key1, index) => {
+                    return (
+                        <div className={`menu-sommaire-item ${showSommaire[index] ? "open" : ""} ${open ? "show" : "hidde"}`} id={`key-${index}`} key={index}>
+                            <div className="menu-sommaire-item-title" onClick={() => toggleSommaire(index)}>
+                                <div className={`more-btn ${showSommaire[index] ? "open" : ""}`}>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                {key1}
                             </div>
-                            {key1}
+                            <div className={`menu-sommaire-item-content ${showSommaire[index] ? "open" : "close"}`}>
+                                {Object.keys(ExpertSommaire[key1]).map((key2, index) => {
+                                    return (
+                                        <div className="menu-sommaire-item-content-item" key={index}>
+                                            {ExpertSommaire[key1][key2]}
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
-                        <div className={`menu-sommaire-item-content ${showSommaire[index] ? "open" : "close"}`}>
-                            {Object.keys(ExpertSommaire[key1]).map((key2, index) => {
-                                return (
-                                    <div className="menu-sommaire-item-content-item" key={index}>
-                                        {ExpertSommaire[key1][key2]}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
         </div>
     );
 };

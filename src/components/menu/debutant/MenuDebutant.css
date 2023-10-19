@@ -1,0 +1,7 @@
+.content-menu-sommaire#debutant .menu-sommaire-item-title {
+    color: var(--light-dark);
+}
+
+.content-menu-sommaire#debutant .menu-sommaire-item-title:hover {
+    background-color: rgb(195, 195, 182);
+}
