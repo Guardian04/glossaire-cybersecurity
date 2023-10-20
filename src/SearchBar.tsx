@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import "./SearchBar.css";
 
 interface TypeDebutant {
-  [key: string]: {
     [key: string]: {
-      title: string;
-      description: string;
-      source: string[];
+        [key: string]: {
+            title: string;
+            description: string;
+            source: string[];
+            level: string;
+        };
     };
-  };
 };
 
 interface TypeExpert {
@@ -18,6 +19,7 @@ interface TypeExpert {
                 title: string;
                 description: string;
                 source: string[];
+                level: string;
             };
         };
     };
@@ -28,9 +30,10 @@ interface Props {
     dataExpert: TypeExpert;
     debutantIsHover: boolean;
     expertIsHover: boolean;
+    openGestion: boolean;
 };
 
-function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover } : Props) {
+function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, openGestion } : Props) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<any[]>([]);
 
@@ -95,12 +98,12 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover } 
     };
 
     return (
-        <div className="search-bar" id={id()}>
+        <div className={`search-bar ${openGestion ? "center" : ""}`} id={id()}>
             <input className="custom-input" type="text" placeholder="     Rechercher..." value={query} onChange={handleSearch} />
             {query !== "" && (
                 <ul>
                     {results.map((result, index) => (
-                        <li key={index}>{result.title}</li>
+                        <li key={index}>{result.title} {result.level}</li>
                     ))}
                 </ul>
             )}
