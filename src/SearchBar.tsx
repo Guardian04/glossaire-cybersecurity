@@ -32,10 +32,13 @@ interface Props {
     expertIsHover: boolean;
     openGestion: boolean;
     indexMenuDebutant: number | null;
+    setIndexMenuDebutant: (index: number | null) => void;
     indexMenuExpert: number | null;
+    toggleLevel: () => void;
+    setIndexDefinition: (index: number | null) => void;
 };
 
-function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, openGestion, indexMenuDebutant, indexMenuExpert } : Props) {
+function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, openGestion, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, toggleLevel, setIndexDefinition } : Props) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<any[]>([]);
     const [position, setPosition] = useState<any[]>([]);
@@ -121,13 +124,15 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
         }
     };
 
-    const handleClickLi = (ref: string) => {
-        console.log(ref);
-        const sectionId = ref;
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth", block : "start" });
+    const handleClickLi = (title: string, pos: any) => {
+        if (!openGestion) {
+            toggleLevel();
         }
+        setIndexMenuDebutant(pos[0]);
+        setIndexDefinition(pos[1]);
+        setQuery(title);
+        setResults([]);
+        setPosition([]);
     };
 
     return (
@@ -139,9 +144,9 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
                         <ul>
                             {results.map((result, index) => {
                                 const pos = position[index];
-                                const ref = pos.length === 2 ? `debutant-def-${pos[0]}-${pos[1]}` : `expert-def-${pos[0]}-${pos[1]}-${pos}`;
+                                console.log(result.level);
                                 return (
-                                    <li key={index} onClick={() => handleClickLi(ref)}>{result.title} {result.level}</li>
+                                    <li key={index} onClick={() => handleClickLi(result.title, pos)}>{result.title} {result.level}</li>
                                 );
                             })}
                         </ul>
