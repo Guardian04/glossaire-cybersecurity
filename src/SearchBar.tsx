@@ -55,18 +55,12 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
         const positionSearchDebutant = searchDebutant(inputValue, dataDebutant)[1];
         const positionSearchExpert = searchExpert(inputValue, dataExpert)[1];
 
-        if (Array.isArray(searchResultsDebutant) && Array.isArray(searchResultsExpert)) {
-            const searchResults = searchResultsDebutant.concat(searchResultsExpert);
-            setResults(searchResults);
+        if (debutantIsHover) {
+            setResults(searchResultsDebutant);
+            setPosition(positionSearchDebutant);
         } else {
-            setResults([]);
-        }
-
-        if (Array.isArray(positionSearchDebutant) && Array.isArray(positionSearchExpert)) {
-            const positionSearch = positionSearchDebutant.concat(positionSearchExpert);
-            setPosition(positionSearch);
-        } else {
-            setPosition([]);
+            setResults(searchResultsExpert);
+            setPosition(positionSearchExpert);
         }
     };
 
