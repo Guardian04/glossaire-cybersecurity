@@ -1,6 +1,7 @@
 import "./DebutantContent.css";
 import DebutantSommaire from "../../../data/DebutantSommaire";
 import DataDebutant from "../../../data/DataDebutantContent";
+import { link } from "fs";
 
 interface Props {
     indexMenuDebutant: number | null;
@@ -36,6 +37,16 @@ const DebutantContent = ({ indexMenuDebutant } : Props) => {
                                             <img src="img/fakeIMG.jpg" alt="fake-img"/>
                                             <div className="definition-description" id="debutant">
                                                 <p>{DataDebutant[theme][def].description}</p>
+                                                <h4>Source :&nbsp;
+                                                    {DataDebutant[theme][def].source.map((source, index3) => {
+                                                        return (
+                                                            <span key={index3}>
+                                                                <a href={source} key={index3} target="_blank">source {index3 + 1}</a>
+                                                                <span>&nbsp;{DataDebutant[theme][def].source.length === 1 ? "" : (index3 === DataDebutant[theme][def].source.length - 1 ? "" : "/")}&nbsp;</span>
+                                                            </span>
+                                                        );
+                                                    })}
+                                                </h4>
                                             </div>
                                         </div>
                                     </section>
