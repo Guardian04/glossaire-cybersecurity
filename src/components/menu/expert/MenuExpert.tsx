@@ -3,13 +3,14 @@ import "./MenuExpert.css";
 import ExpertSommaire from "../../../data/ExpertSommaire";
 
 interface Props {
+    showSommaire: boolean[];
+    setShowSommaire: (showSommaire: boolean[]) => void;
     open: boolean;
     indexMenuExpert: number | null;
     setIndexMenuExpert: (index: number | null) => void;
 };
 
-const MenuExpert = ({ open, indexMenuExpert, setIndexMenuExpert } : Props) => {
-    const [showSommaire, setShowSommaire] = useState([false, false, false]);
+const MenuExpert = ({ showSommaire, setShowSommaire, open, indexMenuExpert, setIndexMenuExpert } : Props) => {
 
     const toggleSommaire = (index: number) => {
         setShowSommaire(showSommaire.map((show, i) => i === index ? !show : show));
@@ -39,7 +40,7 @@ const MenuExpert = ({ open, indexMenuExpert, setIndexMenuExpert } : Props) => {
     }; 
 
     return (
-        <div className="content-menu-sommaire">
+        <div className={`content-menu-sommaire ${open ? "open" : "close"}`}>
             <div className={`menu-sommaire-title ${open ? "close" : "open"}`} id="expert">SOMMAIRE</div>
             <div className="menu-sommaire">
                 {Object.keys(ExpertSommaire).map((key1, index1) => {

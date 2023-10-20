@@ -11,6 +11,7 @@ function App() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [openDebutant, setDebutantOpen] = useState(0);
     const [openExpert, setExpertOpen] = useState(0);
+    const [showSommaire, setShowSommaire] = useState([false, false, false]);
     const [disableHandlers, setDisableHandlers] = useState(false);
     const openGestion = (openDebutant !== 0 || openExpert !== 0);
     const [open, setOpen] = useState(false);
@@ -94,6 +95,7 @@ function App() {
                 setDebutantOpen(0);
                 setExpertOpen(0);
                 setOpen(false);
+                setShowSommaire([false, false, false]);
                 setIndexMenuDebutant(null);
                 setIndexMenuExpert(null);
                 setDebutantIsHover(!handle);
@@ -135,8 +137,8 @@ function App() {
                     <span></span>
                 </div>
             </div>
-            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
-            <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
+            <Debutant showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
+            <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
         </div>
     );
 }

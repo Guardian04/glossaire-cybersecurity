@@ -31,7 +31,7 @@ const MenuDebutant = ({ open, indexMenuDebutant, setIndexMenuDebutant } : Props)
     }; 
 
     return (
-        <div className="content-menu-sommaire" id="debutant">
+        <div className={`content-menu-sommaire ${open ? "open" : "close"}`} id="debutant">
             <div className={`menu-sommaire-title ${open ? "close" : "open"}`} id="debutant">SOMMAIRE</div>
             <div className="menu-sommaire">
                 {DebutantSommaire.map((elt, index) => {

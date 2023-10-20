@@ -6,6 +6,8 @@ import Menu from "../menu/Menu";
 import DebutantContent from "./content/DebutantContent";
 
 interface Props {
+    showSommaire: boolean[];
+    setShowSommaire: (showSommaire: boolean[]) => void;
     isHover: boolean;
     onMouseOver: () => void;
     windowWidth: number;
@@ -20,7 +22,7 @@ interface Props {
     setIndexMenuExpert: (index: number | null) => void;
 };
 
-const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert } : Props) => {
+const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert } : Props) => {
     useEffect(() => {
         const element = document.getElementById("debutant-title");
         let typedDebutant: Typed | undefined;
@@ -81,7 +83,14 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
                 </div>
             </div>
             <DebutantContent indexMenuDebutant={indexMenuDebutant} />
-            <Menu level={false} showMenu={openLevel} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />
+            <Menu level={false} showMenu={openLevel} showSommaire={showSommaire} setShowSommaire={setShowSommaire} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />
+            <div className={`arrow-theme ${openOrNot(openLevel) && indexMenuDebutant !== null ? "show" : "hidden"}`} id="debutant">
+                <div className="arrow-theme-content">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     );
 };

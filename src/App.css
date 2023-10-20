@@ -392,7 +392,6 @@
     box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
     opacity: 0;
     transform: translateY(100%);
-    background-color: #FFA500;
     transition: opacity 1s ease-in-out;
 }
 
