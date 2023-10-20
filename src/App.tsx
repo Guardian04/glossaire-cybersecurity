@@ -3,7 +3,9 @@ import Typed from "typed.js";
 import "./App.css";
 import Debutant from "./components/debutant/Debutant";
 import Expert from "./components/expert/Expert";
-import "./data/TeamData";
+import SearchBar from "./SearchBar";
+import DataDebutant from "./data/DataDebutantContent";
+import DataExpertContent from "./data/DataExpertContent";
 
 function App() {
     const [debutantIsHover, setDebutantIsHover] = useState(true);
@@ -155,6 +157,7 @@ function App() {
                     <span></span>
                 </div>
             </div>
+            <SearchBar dataDebutant={DataDebutant} dataExpert={DataExpertContent} debutantIsHover={debutantIsHover} expertIsHover={expertIsHover} />
             <Debutant showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
             <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
         </div>

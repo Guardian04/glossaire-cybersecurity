@@ -1,0 +1,52 @@
+.search-bar {
+    position: fixed;
+    top: calc(50% - 150px);
+    left: 0;
+    padding: 10px;
+    z-index: 999;
+    transition: left 1.5s ease-in-out;
+}
+
+.search-bar#debutant {
+    left: 775px;
+}
+
+.search-bar#expert {
+    left: 875px;
+}
+
+.custom-input {
+    width: 250px;
+    padding: 15px 20px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    background-color: var(--light-dark);
+    box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: border-color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.custom-input::placeholder {
+    color: var(--dark-light);
+    transition: color 0.3s ease-in-out;
+}
+
+.custom-input:hover::placeholder {
+    color: #FFA500;
+}
+  
+.custom-input:focus {
+    outline: none;
+    border-color: var(--dark);
+    background-color: var(--dark-light);;
+    box-shadow: 5px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.custom-input:focus:hover::placeholder {
+    color: green;
+}
+
+.custom-input:focus::placeholder {
+    color: var(--dark);
+}

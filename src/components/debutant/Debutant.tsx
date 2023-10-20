@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Typed from "typed.js";
 import "./Debutant.css";
 import { teamTOP, teamBOTTOM } from "../../data/TeamData";
-import { useState } from "react";
 import Menu from "../menu/Menu";
 import DebutantContent from "./content/DebutantContent";
 import DataDebutant from "../../data/DataDebutantContent";
@@ -27,9 +26,6 @@ interface Props {
 };
 
 const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert, indexDefinition, setIndexDefinition } : Props) => {
-    const [canGoUp, setCanGoUp] = useState<boolean>(true);
-    const [canGoDown, setCanGoDown] = useState<boolean>(true);
-
     useEffect(() => {
         const element = document.getElementById("debutant-title");
         let typedDebutant: Typed | undefined;
@@ -63,7 +59,6 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
 
         if (indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
             if (indexMenuDebutant >= 0) {
-                setCanGoUp(true);
 
                 if (indexDefinition !== null) {
                     setIndexDefinition(indexDefinition - 1);
@@ -79,11 +74,7 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
                 }
             } else if (indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
                 setIndexMenuDebutant(0);
-            } else {
-                setCanGoUp(false);
             }
-        } else {
-            setCanGoUp(false);
         }
     };
 
@@ -94,7 +85,6 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
             if (indexMenuDebutant < themes.length) {
                 const theme = themes[indexMenuDebutant];
                 const definitionCount = Object.keys(DataDebutant[theme]).length;
-                setCanGoDown(true);
 
                 if (indexDefinition !== null) {
                     setIndexDefinition(indexDefinition + 1);
@@ -107,11 +97,7 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
                 }
             } else if (indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
                 setIndexMenuDebutant(themes.length - 1);
-            } else {
-                setCanGoDown(false);
             }
-        } else {
-            setCanGoDown(false);
         }
     };
 

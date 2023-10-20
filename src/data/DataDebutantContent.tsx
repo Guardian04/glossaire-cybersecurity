@@ -134,8 +134,8 @@ const DataDebutant : Type = {
     },
     theme11 : {
         def1: {
-            title : "RGPD (Le règlement général sur la protection des données)",
-            description : "Oblige les entreprises à respecter un cadre juridique, à être transparente sur l’utilisation de leur données. Ce règlement Renforce les droits des personnes et détient le pouvoir de sanctionner quiconque ne le respectant pas",
+            title : "RGPD",
+            description : "Le RGPD (Le règlement général sur la protection des données) oblige les entreprises à respecter un cadre juridique, à être transparente sur l’utilisation de leur données. Ce règlement Renforce les droits des personnes et détient le pouvoir de sanctionner quiconque ne le respectant pas",
             source : ["https://www.cnil.fr/fr/comprendre-le-rgpd/reglement-general-sur-la-protection-des-donnees-ce-qui-change-pour-les-professionnels","https://www.cnil.fr/sites/cnil/files/atoms/files/cybersecurite_-_chiffres_2021.pdf"]
         }    
     }

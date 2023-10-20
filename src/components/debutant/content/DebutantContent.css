@@ -118,6 +118,22 @@
     text-align: justify;
 }
 
+.definition-description h4 {
+    margin-top: 10px;
+    color: var(--light-dark);
+    font-weight: 600;
+}
+
+.definition-description a {
+    color: green;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.definition-description a:hover {
+    border-bottom-color: green;
+}
+
 .description-theme#debutant, .definition-description#debutant {
     background-color: var(--dark-light);
 }
