@@ -5,18 +5,11 @@
     width: 100%;
     height: 100%;
     padding-bottom: 100px;
+    overflow-y: scroll;
 }
 
 .content-menu-sommaire::-webkit-scrollbar {
     display: none;
-}
-
-.content-menu-sommaire.open {
-    overflow-y: scroll;
-}
-
-.content-menu-sommaire.hidden {
-    overflow-y: hidden;
 }
 
 .menu-sommaire {
