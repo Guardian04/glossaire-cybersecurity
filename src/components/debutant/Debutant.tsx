@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import Typed from "typed.js";
 import "./Debutant.css";
 import { teamTOP, teamBOTTOM } from "../../data/TeamData";
+import { useState } from "react";
 import Menu from "../menu/Menu";
 import DebutantContent from "./content/DebutantContent";
+import DataDebutant from "../../data/DataDebutantContent";
 
 interface Props {
     showSommaire: boolean[];
@@ -23,6 +25,9 @@ interface Props {
 };
 
 const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert } : Props) => {
+    const [indexDefinition, setIndexDefinition] = useState<number | null>(null);
+    const [canGoDown, setCanGoDown] = useState<boolean>(true);
+
     useEffect(() => {
         const element = document.getElementById("debutant-title");
         let typedDebutant: Typed | undefined;
@@ -50,6 +55,62 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
             });
         }
     }, [openGestion]);
+
+    const handleArrowDownClick = () => {
+        const themes = Object.keys(DataDebutant);
+        
+        if (indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
+            if (indexMenuDebutant < themes.length) {
+                const theme = themes[indexMenuDebutant];
+                const definitionCount = Object.keys(DataDebutant[theme]).length;
+                setCanGoDown(true);
+
+                if (indexDefinition !== null) {
+                    setIndexDefinition(indexDefinition + 1);
+                    if (indexDefinition >= definitionCount) {
+                        setIndexDefinition(null);
+                        setIndexMenuDebutant(indexMenuDebutant + 1);
+                    }
+                    
+                    if (indexDefinition === null) {
+                        const sectionId = `debutant-title-${indexMenuDebutant}`;
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.scrollIntoView({ behavior: "smooth" });
+                        }
+                    } else {
+                        const sectionId = `debutant-def-${indexMenuDebutant}-${indexDefinition}`;
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }
+                } else {
+                    setIndexDefinition(0);
+                }
+            } else if (indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
+                setIndexMenuDebutant(themes.length - 1);
+            } else {
+                setCanGoDown(false);
+            }
+        } else {
+            setCanGoDown(false);
+        }
+
+        if (indexDefinition !== null && indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
+            const sectionId = `debutant-def-${indexMenuDebutant}-${indexDefinition}`;
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+            }
+        } else if (indexDefinition === null) {
+            const sectionId = `debutant-title-${indexMenuDebutant}`;
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    };
 
     return (
         <div className={`content debutant ${isHover ? "is-hover" : "not-hover"} ${openOrNot(openLevel)}`} onMouseOver={() => onMouseOver()}>
@@ -84,7 +145,7 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
             </div>
             <DebutantContent indexMenuDebutant={indexMenuDebutant} />
             <Menu level={false} showMenu={openLevel} showSommaire={showSommaire} setShowSommaire={setShowSommaire} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />
-            <div className={`arrow-theme ${openOrNot(openLevel) && indexMenuDebutant !== null ? "show" : "hidden"}`} id="debutant">
+            <div className={`arrow-theme ${openOrNot(openLevel) && indexMenuDebutant !== null ? "show" : "hidden"}`} id="debutant" onClick={() => handleArrowDownClick()}>
                 <div className="arrow-theme-content">
                     <span></span>
                     <span></span>

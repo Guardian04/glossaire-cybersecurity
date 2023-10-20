@@ -13,7 +13,6 @@ const MenuDebutant = ({ open, indexMenuDebutant, setIndexMenuDebutant } : Props)
     const onClick = (index : number | null) => {
         setIndexMenuDebutant(index);
         if (oldINdex !== null) {
-            console.log(oldINdex);
             const sectionId = `debutant-title-${index}`;
             const section = document.getElementById(sectionId);
             if (section) {

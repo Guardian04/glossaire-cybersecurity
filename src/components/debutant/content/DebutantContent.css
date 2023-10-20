@@ -62,12 +62,20 @@
     font-size: 6rem;
 }
 
-.main-content.debutant {
-    color: var(--light-dark);
+.main-content.debutant h2 {
+    color: green;
+}
+
+.main-content.debutant p {
+    color: var(--dark);
 }
 
 .main-content.expert {
     color: var(--dark-light);
+}
+
+.theme {
+    height: 100vh;
 }
 
 .main-intro {
@@ -113,4 +121,17 @@
 
 .description-theme#expert {
     background-color: var(--light-dark);
+}
+
+.definition {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.definition h2#debutant {
+    font-size: 6rem;
+    color: var(--light-dark);
 }

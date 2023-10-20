@@ -1,4 +1,14 @@
-const DataDebutant = {
+interface Type {
+    [key: string]: {
+        [key: string]: {
+            title: string;
+            description: string;
+            source: string[];
+        };
+    };
+};
+
+const DataDebutant : Type = {
     theme1 : {
         def1: {
             title : "Virus",
