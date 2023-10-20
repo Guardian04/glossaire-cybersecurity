@@ -168,7 +168,7 @@
     padding: 10px 30px;
     color: var(--dark-light);
     background-color: transparent;
-    margin-left: 30px;
+    padding-left: 60px;
     transition: background-color 0.3s ease-in-out;
 }
 

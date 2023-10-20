@@ -50,5 +50,12 @@
 
 .main-content h2 {
     font-size: 6rem;
+}
+
+.main-content.debutant {
     color: var(--light-dark);
+}
+
+.main-content.expert {
+    color: var(--dark-light);
 }

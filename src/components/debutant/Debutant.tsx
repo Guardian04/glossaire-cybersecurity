@@ -16,9 +16,11 @@ interface Props {
     open: boolean;
     indexMenuDebutant: number | null;
     setIndexMenuDebutant: (index: number | null) => void;
+    indexMenuExpert: number | null;
+    setIndexMenuExpert: (index: number | null) => void;
 };
 
-const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant } : Props) => {
+const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert } : Props) => {
     useEffect(() => {
         const element = document.getElementById("debutant-title");
         let typedDebutant: Typed | undefined;
@@ -79,7 +81,7 @@ const Debutant = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, ope
                 </div>
             </div>
             <DebutantContent indexMenuDebutant={indexMenuDebutant} />
-            <Menu level={false} showMenu={openLevel} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} />
+            <Menu level={false} showMenu={openLevel} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />
         </div>
     );
 };

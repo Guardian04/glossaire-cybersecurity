@@ -3,6 +3,7 @@ import Typed from "typed.js";
 import "./Expert.css";
 import { teamTOP, teamBOTTOM } from "../../data/TeamData";
 import Menu from "../menu/Menu";
+import ExpertContent from "./content/ExpertContent";
 
 interface Props {
     isHover: boolean;
@@ -15,9 +16,11 @@ interface Props {
     open: boolean;
     indexMenuDebutant: number | null;
     setIndexMenuDebutant: (index: number | null) => void;
+    indexMenuExpert: number | null;
+    setIndexMenuExpert: (index: number | null) => void;
 };
 
-const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant} : Props) => {
+const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert} : Props) => {
     useEffect(() => {
         const element = document.getElementById("expert-title");
         let typedExpert: Typed | undefined;
@@ -48,8 +51,8 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
 
     return (
         <div className={`content expert ${isHover ? "is-hover" : "not-hover"} ${openOrNot(openLevel)}`} onMouseOver={() => onMouseOver()}>
-            <h1 id="expert-title"></h1>
-            <div className={`intro-content ${isHover ? "show" : "hidden"}`}>
+            <h1 id="expert-title" className={`${indexMenuExpert === null ? "show" : "hidden"}`}></h1>
+            <div className={`intro-content ${isHover ? "show" : "hidden"} ${indexMenuExpert === null ? "open" : "close"}`}>
                 <p id="expert-sommaire">
                     Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, 
                     sulcatis lateribus mortisque metu admoto turpi confessione cogitatorum socium, 
@@ -77,7 +80,8 @@ const Expert = ({ isHover, onMouseOver, windowWidth, openLevel, openOrNot, openG
                     })}
                 </div>
             </div>
-            <Menu level={true} showMenu={openLevel} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} />
+            <ExpertContent indexMenuExpert={indexMenuExpert} />
+            <Menu level={true} showMenu={openLevel} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />
         </div>
     );
 };

@@ -15,6 +15,7 @@ function App() {
     const openGestion = (openDebutant !== 0 || openExpert !== 0);
     const [open, setOpen] = useState(false);
     const [indexMenuDebutant, setIndexMenuDebutant] = useState<number | null>(null);
+    const [indexMenuExpert, setIndexMenuExpert] = useState<number | null>(null);
 
     const handleClick = () => {
         setOpen(!open);
@@ -94,6 +95,7 @@ function App() {
                 setExpertOpen(0);
                 setOpen(false);
                 setIndexMenuDebutant(null);
+                setIndexMenuExpert(null);
                 setDebutantIsHover(!handle);
                 setExpertIsHover(handle);
             } else {
@@ -124,7 +126,7 @@ function App() {
                 <img src="img/DGSI.png" alt="Logo DGSI" />
             </div>
             <div className={`glossaire ${debutantIsHover ? "right" : "left"} ${openGestion ? "center" : ""}`}>
-                <h1 className={`${indexMenuDebutant === null ? "show" : "hidden"}`}>Glossaire <span id="glossaire"></span></h1>
+                <h1 className={`${indexMenuDebutant === null && indexMenuExpert === null? "show" : "hidden"}`}>Glossaire <span id="glossaire"></span></h1>
             </div>
             <div className={`arrow ${debutantIsHover ? "right" : "left"} ${openGestion ? "reverse" : ""}`} onClick={() => toggleLevel()}>
                 <div className="arrow-content">
@@ -133,8 +135,8 @@ function App() {
                     <span></span>
                 </div>
             </div>
-            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} />
-            <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant}/>
+            <Debutant isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
+            <Expert isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
         </div>
     );
 }

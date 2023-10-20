@@ -5,3 +5,11 @@
 .content.expert h1 {
     color: var(--light);
 }
+
+.content.expert #expert-title.show {
+    opacity: 1;
+}
+
+.content.expert #expert-title.hidden {
+    opacity: 0;
+}

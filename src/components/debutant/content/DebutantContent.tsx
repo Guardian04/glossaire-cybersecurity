@@ -10,7 +10,7 @@ const DebutantContent = ({ indexMenuDebutant } : Props) => {
         <div className={`main-container ${indexMenuDebutant === null ? "close" : "open"}`} id="debutant">
             {DebutantSommaire.map((title, index) => {
                 return (
-                    <section key={index} id={`debutant-title-${index}`} className="main-content">
+                    <section key={index} id={`debutant-title-${index}`} className="main-content debutant">
                         <h2>{title}</h2>
                     </section>
                 );

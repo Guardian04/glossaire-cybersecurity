@@ -1,0 +1,26 @@
+.main-container#expert.open {
+    animation: contentExpertShow 1.5s forwards ease-in-out;
+    animation-delay: 1s;
+}
+
+@keyframes contentExpertShow {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.main-container#expert.close {
+    animation: contentExpertHidde 1.5s forwards ease-in-out;
+}
+
+@keyframes contentExpertHidde {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
