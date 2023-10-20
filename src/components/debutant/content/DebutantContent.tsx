@@ -11,11 +11,11 @@ const DebutantContent = ({ indexMenuDebutant } : Props) => {
         <div className={`main-container ${indexMenuDebutant === null ? "close" : "open"}`} id="debutant">
             {Object.keys(DataDebutant).map((theme, index1) => {
                 return (
-                    <section key={theme} id={`debutant-title-${index1}`} className="main-content debutant">
-                        <div className="theme">
+                    <section key={theme} id={`debutant-theme-${index1}`} className="main-content debutant">
+                        <div className="theme" id={`title-debutant-${index1}`}>
                             <h2>{DebutantSommaire[index1]}</h2>
                             <div className="main-intro">
-                                <img src="img/fakeIMG.jpg" alt="fake-img" />
+                                <img src="img/fakeIMG.jpg" alt="fake-img"/>
                                 <div className="description-theme" id="debutant">
                                     <p>
                                         Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, 
@@ -27,12 +27,17 @@ const DebutantContent = ({ indexMenuDebutant } : Props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="defintions">
+                        <div className="definitions">
                             {Object.keys(DataDebutant[theme]).map((def, index2) => {
                                 return (
                                     <section key={def} id={`debutant-def-${index1}-${index2}`} className="definition">
                                         <h2 id="debutant">{DataDebutant[theme][def].title}</h2>
-
+                                        <div className="definition-content">
+                                            <img src="img/fakeIMG.jpg" alt="fake-img"/>
+                                            <div className="definition-description" id="debutant">
+                                                <p>{DataDebutant[theme][def].description}</p>
+                                            </div>
+                                        </div>
                                     </section>
                                 );
                             })}

@@ -5,25 +5,30 @@ interface Props {
     open: boolean;
     indexMenuDebutant: number | null;
     setIndexMenuDebutant: (index: number | null) => void;
+    indexDefinition: number | null;
+    setIndexDefinition: (index: number | null) => void;
 };
 
-const MenuDebutant = ({ open, indexMenuDebutant, setIndexMenuDebutant } : Props) => {
+const MenuDebutant = ({ open, indexMenuDebutant, setIndexMenuDebutant, indexDefinition, setIndexDefinition } : Props) => {
     const oldINdex = indexMenuDebutant;
 
     const onClick = (index : number | null) => {
         setIndexMenuDebutant(index);
         if (oldINdex !== null) {
-            const sectionId = `debutant-title-${index}`;
+            setIndexDefinition(null);
+            const sectionId = `title-debutant-${index}`;
             const section = document.getElementById(sectionId);
             if (section) {
-                section.scrollIntoView({ behavior: "smooth" });
+                section.scrollIntoView({ behavior: "smooth", block : "start" });
             }
         } else {
             setTimeout(() => {
-                const sectionId = `debutant-title-${index}`;
+                setIndexDefinition(null);
+                const sectionId = `title-debutant-${index}`;
                 const section = document.getElementById(sectionId);
                 if (section) {
-                    section.scrollIntoView({ behavior: "smooth" });
+                    const offset = 35;
+                    section.scrollTop = offset;
                 }
             }, 1000);
         }

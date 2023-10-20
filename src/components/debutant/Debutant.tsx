@@ -22,10 +22,12 @@ interface Props {
     setIndexMenuDebutant: (index: number | null) => void;
     indexMenuExpert: number | null;
     setIndexMenuExpert: (index: number | null) => void;
+    indexDefinition: number | null;
+    setIndexDefinition: (index: number | null) => void;
 };
 
-const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert } : Props) => {
-    const [indexDefinition, setIndexDefinition] = useState<number | null>(null);
+const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert, indexDefinition, setIndexDefinition } : Props) => {
+    const [canGoUp, setCanGoUp] = useState<boolean>(true);
     const [canGoDown, setCanGoDown] = useState<boolean>(true);
 
     useEffect(() => {
@@ -56,6 +58,35 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
         }
     }, [openGestion]);
 
+    const handleArrowUpClick = () => {
+        const themes = Object.keys(DataDebutant);
+
+        if (indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
+            if (indexMenuDebutant >= 0) {
+                setCanGoUp(true);
+
+                if (indexDefinition !== null) {
+                    setIndexDefinition(indexDefinition - 1);
+                    if (indexDefinition < 0) {
+                        setIndexDefinition(null);
+                        setIndexMenuDebutant(indexMenuDebutant - 1);
+                    }
+                } else {
+                    setIndexMenuDebutant(indexMenuDebutant - 1);
+                    const theme = themes[indexMenuDebutant];
+                    const definitionCount = Object.keys(DataDebutant[theme]).length;
+                    setIndexDefinition(definitionCount - 1);
+                }
+            } else if (indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
+                setIndexMenuDebutant(0);
+            } else {
+                setCanGoUp(false);
+            }
+        } else {
+            setCanGoUp(false);
+        }
+    };
+
     const handleArrowDownClick = () => {
         const themes = Object.keys(DataDebutant);
         
@@ -71,20 +102,6 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
                         setIndexDefinition(null);
                         setIndexMenuDebutant(indexMenuDebutant + 1);
                     }
-                    
-                    if (indexDefinition === null) {
-                        const sectionId = `debutant-title-${indexMenuDebutant}`;
-                        const section = document.getElementById(sectionId);
-                        if (section) {
-                            section.scrollIntoView({ behavior: "smooth" });
-                        }
-                    } else {
-                        const sectionId = `debutant-def-${indexMenuDebutant}-${indexDefinition}`;
-                        const section = document.getElementById(sectionId);
-                        if (section) {
-                            section.scrollIntoView({ behavior: "smooth" });
-                        }
-                    }
                 } else {
                     setIndexDefinition(0);
                 }
@@ -95,20 +112,6 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
             }
         } else {
             setCanGoDown(false);
-        }
-
-        if (indexDefinition !== null && indexMenuDebutant !== null && indexMenuDebutant !== undefined) {
-            const sectionId = `debutant-def-${indexMenuDebutant}-${indexDefinition}`;
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: "smooth" });
-            }
-        } else if (indexDefinition === null) {
-            const sectionId = `debutant-title-${indexMenuDebutant}`;
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: "smooth" });
-            }
         }
     };
 
@@ -144,12 +147,21 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
                 </div>
             </div>
             <DebutantContent indexMenuDebutant={indexMenuDebutant} />
-            <Menu level={false} showMenu={openLevel} showSommaire={showSommaire} setShowSommaire={setShowSommaire} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />
-            <div className={`arrow-theme ${openOrNot(openLevel) && indexMenuDebutant !== null ? "show" : "hidden"}`} id="debutant" onClick={() => handleArrowDownClick()}>
-                <div className="arrow-theme-content">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <Menu level={false} showMenu={openLevel} showSommaire={showSommaire} setShowSommaire={setShowSommaire} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
+            <div className={`arrows ${openOrNot(openLevel) && indexMenuDebutant !== null ? "show" : "hidden"}`} id="debutant">
+                <div className="arrow-theme" id="debutant-up" onClick={() => handleArrowUpClick()}>
+                    <div className="arrow-theme-content">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div className="arrow-theme" id="debutant-down" onClick={() => handleArrowDownClick()}>
+                    <div className="arrow-theme-content">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
         </div>

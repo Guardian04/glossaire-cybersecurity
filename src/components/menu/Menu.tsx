@@ -14,13 +14,15 @@ interface Props {
     setIndexMenuDebutant: (index: number | null) => void;
     indexMenuExpert: number | null;
     setIndexMenuExpert: (index: number | null) => void;
+    indexDefinition: number | null;
+    setIndexDefinition: (index: number | null) => void;
 };
 
-const Menu = ({ level, showMenu, showSommaire, setShowSommaire, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert } : Props) => {
+const Menu = ({ level, showMenu, showSommaire, setShowSommaire, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert, indexDefinition, setIndexDefinition } : Props) => {
     return (
         <div className={`menu ${showMenu === 1 ? "show" : "hidde"} ${open ? "open" : ""}`} id={`${level ? "expert" : "debutant"}`}>
             <Hamburger level={level} onClick={onClick} open={open} />
-            {!level ? <MenuDebutant open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} /> : <MenuExpert showSommaire={showSommaire} setShowSommaire={setShowSommaire} open={open} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />}
+            {!level ? <MenuDebutant open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition} /> : <MenuExpert showSommaire={showSommaire} setShowSommaire={setShowSommaire} open={open} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />}
         </div>
     );
 };

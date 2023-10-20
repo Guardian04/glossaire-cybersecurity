@@ -20,9 +20,11 @@ interface Props {
     setIndexMenuDebutant: (index: number | null) => void;
     indexMenuExpert: number | null;
     setIndexMenuExpert: (index: number | null) => void;
+    indexDefinition: number | null;
+    setIndexDefinition: (index: number | null) => void;
 };
 
-const Expert = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert} : Props) => {
+const Expert = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert, indexDefinition, setIndexDefinition} : Props) => {
     useEffect(() => {
         const element = document.getElementById("expert-title");
         let typedExpert: Typed | undefined;
@@ -83,7 +85,7 @@ const Expert = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWid
                 </div>
             </div>
             <ExpertContent indexMenuExpert={indexMenuExpert} />
-            <Menu level={true} showMenu={openLevel} showSommaire={showSommaire} setShowSommaire={setShowSommaire} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} />
+            <Menu level={true} showMenu={openLevel} showSommaire={showSommaire} setShowSommaire={setShowSommaire} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
         </div>
     );
 };

@@ -17,6 +17,7 @@ function App() {
     const [open, setOpen] = useState(false);
     const [indexMenuDebutant, setIndexMenuDebutant] = useState<number | null>(null);
     const [indexMenuExpert, setIndexMenuExpert] = useState<number | null>(null);
+    const [indexDefinition, setIndexDefinition] = useState<number | null>(null);
 
     const handleClick = () => {
         setOpen(!open);
@@ -122,6 +123,23 @@ function App() {
         }
     };
 
+    useEffect(() => {
+        if (indexDefinition !== null && indexDefinition !== undefined && indexMenuDebutant!== null) {
+            const sectionId = `debutant-def-${indexMenuDebutant}-${indexDefinition}`;
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth"});
+            }
+            console.log(sectionId);
+        } else if (indexDefinition === null && indexDefinition !== undefined && indexMenuDebutant!== null) {
+            const sectionId = `title-debutant-${indexMenuDebutant}`;
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth", block : "start" });
+            }
+        }
+    }, [indexDefinition, indexMenuDebutant]);
+
     return (
         <div className="app">
             <div className={`logo ${debutantIsHover ? "left" : "right"} ${openGestion ? "hidden" : "show"}`}>
@@ -137,8 +155,8 @@ function App() {
                     <span></span>
                 </div>
             </div>
-            <Debutant showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
-            <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert}/>
+            <Debutant showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
+            <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
         </div>
     );
 }
