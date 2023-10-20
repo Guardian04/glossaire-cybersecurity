@@ -58,7 +58,11 @@
     right: 200px;
 }
 
-.arrows:hover .arrow-theme#debutant-up .arrow-theme-content, .arrows:hover .arrow-theme#debutant-down .arrow-theme-content {
+.arrows#expert {
+    left: 200px;
+}
+
+.arrows:hover .arrow-theme#up .arrow-theme-content, .arrows:hover .arrow-theme#down .arrow-theme-content {
     animation: none;
 }
 
@@ -92,27 +96,31 @@
     transform: rotate(-90deg);
 }
 
-.arrow-theme#debutant-down .arrow-theme-content span:nth-child(1) {
+.arrows#expert .arrow-theme-content span {
+    background-color: var(--dark-light);
+}
+
+.arrow-theme#down .arrow-theme-content span:nth-child(1) {
     width: 50%;
     transform: translate(10px, 11px) rotate(-45deg);
 }
 
-.arrow-theme#debutant-down .arrow-theme-content span:nth-child(3) {
+.arrow-theme#down .arrow-theme-content span:nth-child(3) {
     width: 50%;
     transform: translate(-10px, 11px) rotate(-135deg);
 }
 
-.arrow-theme#debutant-up .arrow-theme-content span:nth-child(1) {
+.arrow-theme#up .arrow-theme-content span:nth-child(1) {
     width: 50%;
     transform: translate(10px, -11px) rotate(45deg);
 }
 
-.arrow-theme#debutant-up .arrow-theme-content span:nth-child(3) {
+.arrow-theme#up .arrow-theme-content span:nth-child(3) {
     width: 50%;
     transform: translate(-10px, -11px) rotate(135deg);
 }
 
-.arrow-theme#debutant-up .arrow-theme-content {
+.arrow-theme#up .arrow-theme-content {
     animation: themeArrowUp 2s infinite ease-in-out;
 }
 
@@ -135,7 +143,7 @@
     }
 }
 
-.arrow-theme#debutant-down .arrow-theme-content {
+.arrow-theme#down .arrow-theme-content {
     animation: themeArrowDown 2s infinite ease-in-out;
 }
 

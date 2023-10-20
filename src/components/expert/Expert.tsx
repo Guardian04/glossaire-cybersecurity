@@ -4,6 +4,7 @@ import "./Expert.css";
 import { teamTOP, teamBOTTOM } from "../../data/TeamData";
 import Menu from "../menu/Menu";
 import ExpertContent from "./content/ExpertContent";
+import DataExpertContent from "../../data/DataExpertContent";
 
 interface Props {
     showSommaire: boolean[];
@@ -22,9 +23,11 @@ interface Props {
     setIndexMenuExpert: (index: number | null) => void;
     indexDefinition: number | null;
     setIndexDefinition: (index: number | null) => void;
+    indexMenuAxe: number | null;
+    setIndexMenuAxe: (index: number | null) => void;
 };
 
-const Expert = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert, indexDefinition, setIndexDefinition} : Props) => {
+const Expert = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowWidth, openLevel, openOrNot, openGestion, onClick, open, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, setIndexMenuExpert, indexDefinition, setIndexDefinition, indexMenuAxe, setIndexMenuAxe} : Props) => {
     useEffect(() => {
         const element = document.getElementById("expert-title");
         let typedExpert: Typed | undefined;

@@ -19,6 +19,7 @@ function App() {
     const [open, setOpen] = useState(false);
     const [indexMenuDebutant, setIndexMenuDebutant] = useState<number | null>(null);
     const [indexMenuExpert, setIndexMenuExpert] = useState<number | null>(null);
+    const [indexMenuAxe, setIndexMenuAxe] = useState<number | null>(null);
     const [indexDefinition, setIndexDefinition] = useState<number | null>(null);
 
     const handleClick = () => {
@@ -101,6 +102,8 @@ function App() {
                 setShowSommaire([false, false, false]);
                 setIndexMenuDebutant(null);
                 setIndexMenuExpert(null);
+                setIndexMenuAxe(null);
+                setIndexDefinition(null);
                 setDebutantIsHover(!handle);
                 setExpertIsHover(handle);
             } else {
@@ -127,20 +130,45 @@ function App() {
 
     useEffect(() => {
         if (indexDefinition !== null && indexDefinition !== undefined && indexMenuDebutant!== null) {
-            const sectionId = `debutant-def-${indexMenuDebutant}-${indexDefinition}`;
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: "smooth"});
+            let sectionId;
+            if (openDebutant === 1) {
+                sectionId = `debutant-def-${indexMenuDebutant}-${indexDefinition}`;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: "smooth", block : "start" });
+                }
+            } else if (indexMenuAxe !== null && indexMenuAxe !== undefined) {
+                sectionId = `expert-def-${indexMenuAxe}-${indexMenuExpert}-${indexDefinition}`;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                }
             }
-            console.log(sectionId);
         } else if (indexDefinition === null && indexDefinition !== undefined && indexMenuDebutant!== null) {
-            const sectionId = `title-debutant-${indexMenuDebutant}`;
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: "smooth", block : "start" });
+            let sectionId;
+            if (openDebutant === 1) {
+                sectionId = `title-debutant-${indexMenuDebutant}`;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: "smooth", block : "start" });
+                }
+            } else if (indexMenuAxe !== null && indexMenuAxe !== undefined) {
+                if (indexMenuExpert === null) {
+                    sectionId = `expert-axe-${indexMenuAxe}`;
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: "smooth", block : "start" });
+                    }
+                } else {
+                    sectionId = `expert-title-${indexMenuAxe}-${indexMenuExpert}`;
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: "smooth", block : "start" });
+                    }
+                }
             }
         }
-    }, [indexDefinition, indexMenuDebutant]);
+    }, [indexDefinition, indexMenuDebutant, indexMenuExpert, openDebutant, indexMenuAxe]);
 
     return (
         <div className="app">
@@ -157,9 +185,9 @@ function App() {
                     <span></span>
                 </div>
             </div>
-            <SearchBar dataDebutant={DataDebutant} dataExpert={DataExpertContent} debutantIsHover={debutantIsHover} expertIsHover={expertIsHover} openGestion={openGestion} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} toggleLevel={toggleLevel} setIndexDefinition={setIndexDefinition} />
+            <SearchBar dataDebutant={DataDebutant} dataExpert={DataExpertContent} debutantIsHover={debutantIsHover} expertIsHover={expertIsHover} openGestion={openGestion} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuAxe={indexMenuAxe} setIndexMenuAxe={setIndexMenuAxe} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} toggleLevel={toggleLevel} setIndexDefinition={setIndexDefinition} />
             <Debutant showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
-            <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
+            <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition} indexMenuAxe={indexMenuAxe} setIndexMenuAxe={setIndexMenuAxe} />
         </div>
     );
 }

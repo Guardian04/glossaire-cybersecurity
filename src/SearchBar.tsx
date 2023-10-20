@@ -7,6 +7,7 @@ interface TypeDebutant {
             title: string;
             description: string;
             source: string[];
+            img : string;
             level: string;
         };
     };
@@ -19,6 +20,7 @@ interface TypeExpert {
                 title: string;
                 description: string;
                 source: string[];
+                img : string;
                 level: string;
             };
         };
@@ -33,18 +35,21 @@ interface Props {
     openGestion: boolean;
     indexMenuDebutant: number | null;
     setIndexMenuDebutant: (index: number | null) => void;
+    indexMenuAxe: number | null;
+    setIndexMenuAxe: (index: number | null) => void;
     indexMenuExpert: number | null;
+    setIndexMenuExpert: (index: number | null) => void;
     toggleLevel: () => void;
     setIndexDefinition: (index: number | null) => void;
 };
 
-function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, openGestion, indexMenuDebutant, setIndexMenuDebutant, indexMenuExpert, toggleLevel, setIndexDefinition } : Props) {
+function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, openGestion, indexMenuDebutant, setIndexMenuDebutant, indexMenuAxe, setIndexMenuAxe, indexMenuExpert, setIndexMenuExpert, toggleLevel, setIndexDefinition } : Props) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<any[]>([]);
     const [position, setPosition] = useState<any[]>([]);
     const [actual, setActual] = useState(true);
 
-    const MenuSelectedOrNot = indexMenuDebutant !== null || indexMenuExpert!== null ? "selected" : "";
+    const MenuSelectedOrNot = indexMenuDebutant !== null || indexMenuExpert !== null ? "selected" : "";
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
@@ -123,8 +128,23 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
         if (!openGestion) {
             toggleLevel();
         }
-        setIndexMenuDebutant(pos[0]);
-        setIndexDefinition(pos[1]);
+
+        if (id() === "debutant") {
+            setIndexMenuDebutant(pos[0]);
+            setIndexDefinition(pos[1]);
+
+        } else {
+            setIndexMenuAxe(pos[0]);
+            setIndexMenuExpert(pos[1]);
+            setIndexDefinition(pos[2]);
+
+            const sectionId = `expert-def-${pos[0]}-${pos[1]}-${pos[2]}`;
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+        
         setQuery(title);
         setResults([]);
         setPosition([]);
@@ -152,7 +172,7 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
                                 const pos = position[index];
                                 console.log(result.level);
                                 return (
-                                    <li key={index} onClick={() => handleClickLi(result.title, pos)}>{result.title} {result.level}</li>
+                                    <li key={index} onClick={() => handleClickLi(result.title, pos)}>{result.title}</li>
                                 );
                             })}
                         </ul>

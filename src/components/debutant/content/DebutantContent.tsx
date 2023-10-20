@@ -1,7 +1,6 @@
 import "./DebutantContent.css";
 import DebutantSommaire from "../../../data/DebutantSommaire";
 import DataDebutant from "../../../data/DataDebutantContent";
-import { link } from "fs";
 
 interface Props {
     indexMenuDebutant: number | null;
@@ -34,7 +33,7 @@ const DebutantContent = ({ indexMenuDebutant } : Props) => {
                                     <section key={def} id={`debutant-def-${index1}-${index2}`} className="definition">
                                         <h2 id="debutant">{DataDebutant[theme][def].title}</h2>
                                         <div className="definition-content">
-                                            <img src="img/fakeIMG.jpg" alt="fake-img"/>
+                                            <img src={DataDebutant[theme][def].img} alt="fake-img"/>
                                             <div className="definition-description" id="debutant">
                                                 <p>{DataDebutant[theme][def].description}</p>
                                                 <h4>Source :&nbsp;

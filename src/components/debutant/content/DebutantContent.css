@@ -8,10 +8,6 @@
     transform: translateX(-100%);
 }
 
-.main-container::-webkit-scrollbar {
-    display: none;
-}
-
 .main-container#debutant.open {
     animation: contentDebutantShow 1.5s forwards ease-in-out;
     animation-delay: 1s;
@@ -58,12 +54,24 @@
     padding: 30px 0;
 }
 
-.main-content h2 {
+.main-content.expert {
+    overflow-y: scroll;
+}
+
+.main-content.expert::-webkit-scrollbar {
+    display: none;
+}
+
+.main-content h2, .expert-axe h2 {
     font-size: 6rem;
 }
 
 .main-content.debutant h2 {
     color: green;
+}
+
+.expert-axe h2 {
+    color: #FFA500;
 }
 
 .main-content.debutant p {
@@ -74,8 +82,16 @@
     color: var(--dark-light);
 }
 
-.theme {
+.theme, .expert-axe {
     padding-top: 12px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.theme-expert {
+    position: relative;
+    top: -20px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -124,10 +140,23 @@
     font-weight: 600;
 }
 
+.definition-description h4#expert {
+    color: #FFA500;
+}
+
+
+.description-theme p#expert {
+    color: var(--dark-light);
+}
+
 .definition-description a {
     color: green;
     border-bottom: 1px solid transparent;
     transition: border-color 0.3s ease-in-out;
+}
+
+.definition-description h4#expert a {
+    color: #FFA500;
 }
 
 .definition-description a:hover {
@@ -158,7 +187,14 @@
     padding: 12px 0;
 }
 
-.definition h2#debutant {
+.definition h2 {
     font-size: 6rem;
+}
+
+.definition h2#debutant {
     color: var(--light-dark);
+}
+
+.definition h2#expert {
+    color: var(--dark-light);
 }

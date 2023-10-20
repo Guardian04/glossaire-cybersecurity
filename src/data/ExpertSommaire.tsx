@@ -10,9 +10,7 @@ const ExpertSommaire : Type = {
         2 : "Sécurité Réseau",
         3 : "Sécurité Mobile",
         4 : "Authentification et Gestion d’Accès",
-        5 : "Protection des Données",
         6 : "Gestion des Vulnérabilités",
-        7 : "Forensics et Réponse aux Incidents",
         8 : "Sécurité Applicative",
         9 : "Sécurité du Cloud"
     },
@@ -25,9 +23,7 @@ const ExpertSommaire : Type = {
     "Red Team" : {
         1 : "Technique d'Attaque",
         2 : "Outils de Test d'Intrusion",
-        3 : "Méthodologies",
-        4 : "Evasion et Dissimulation",
-        5 : "Exfiltration de Données"
+        3 : "Méthodologies"
     }
 };
 

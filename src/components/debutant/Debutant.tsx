@@ -135,14 +135,14 @@ const Debutant = ({ showSommaire, setShowSommaire, isHover, onMouseOver, windowW
             <DebutantContent indexMenuDebutant={indexMenuDebutant} />
             <Menu level={false} showMenu={openLevel} showSommaire={showSommaire} setShowSommaire={setShowSommaire} onClick={onClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
             <div className={`arrows ${openOrNot(openLevel) && indexMenuDebutant !== null ? "show" : "hidden"}`} id="debutant">
-                <div className="arrow-theme" id="debutant-up" onClick={() => handleArrowUpClick()}>
+                <div className="arrow-theme" id="up" onClick={() => handleArrowUpClick()}>
                     <div className="arrow-theme-content">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
                 </div>
-                <div className="arrow-theme" id="debutant-down" onClick={() => handleArrowDownClick()}>
+                <div className="arrow-theme" id="down" onClick={() => handleArrowDownClick()}>
                     <div className="arrow-theme-content">
                         <span></span>
                         <span></span>
