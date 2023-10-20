@@ -31,20 +31,40 @@ interface Props {
     debutantIsHover: boolean;
     expertIsHover: boolean;
     openGestion: boolean;
+    indexMenuDebutant: number | null;
+    indexMenuExpert: number | null;
 };
 
-function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, openGestion } : Props) {
+function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, openGestion, indexMenuDebutant, indexMenuExpert } : Props) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<any[]>([]);
+    const [position, setPosition] = useState<any[]>([]);
+
+    const MenuSelectedOrNot = indexMenuDebutant !== null || indexMenuExpert!== null ? "selected" : "";
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         setQuery(inputValue);
 
-        const searchResultsDebutant = searchDebutant(inputValue, dataDebutant);
-        const searchResultsExpert = searchExpert(inputValue, dataExpert);
-        const searchResults = searchResultsDebutant.concat(searchResultsExpert);
-        setResults(searchResults);
+        const searchResultsDebutant = searchDebutant(inputValue, dataDebutant)[0];
+        const searchResultsExpert = searchExpert(inputValue, dataExpert)[0];
+
+        const positionSearchDebutant = searchDebutant(inputValue, dataDebutant)[1];
+        const positionSearchExpert = searchExpert(inputValue, dataExpert)[1];
+
+        if (Array.isArray(searchResultsDebutant) && Array.isArray(searchResultsExpert)) {
+            const searchResults = searchResultsDebutant.concat(searchResultsExpert);
+            setResults(searchResults);
+        } else {
+            setResults([]);
+        }
+
+        if (Array.isArray(positionSearchDebutant) && Array.isArray(positionSearchExpert)) {
+            const positionSearch = positionSearchDebutant.concat(positionSearchExpert);
+            setPosition(positionSearch);
+        } else {
+            setPosition([]);
+        }
     };
 
     const searchDebutant = (query: string, data: TypeDebutant) => {
@@ -53,17 +73,19 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
         }
 
         const results: any[] = [];
+        const position: any[] = [];
 
-        for (const theme in data) {
-            for (const defKey in data[theme]) {
-                const definition = data[theme][defKey];
+        for (const [index1, theme] of Object.entries(data)) {
+            for (const [index2, definition] of Object.entries(theme)) {
+
                 if (definition.title.toLowerCase().includes(query.toLowerCase())) {
-                    results.push(definition);
+                    results.push({ title: definition.title, description: definition.description, source: definition.source });
+                    position.push([Object.keys(data).indexOf(index1), Object.keys(theme).indexOf(index2)]);
                 }
             }
         }
 
-        return results;
+        return [results, position];
     };
     
     const searchExpert = (query: string, data: TypeExpert) => {
@@ -72,19 +94,21 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
         }
 
         const results: any[] = [];
+        const position: any[] = [];
 
-        for (const axe in data) {
-            for (const theme in data[axe]) {
-                for (const defKey in data[axe][theme]) {
-                    const definition = data[axe][theme][defKey];
+        for (const [index1, axe] of Object.entries(data)) {
+            for (const [index2, theme] of Object.entries(axe)) {
+                for (const [index3, def] of Object.entries(theme)) {
+                    const definition = def;
                     if (definition.title.toLowerCase().includes(query.toLowerCase())) {
                         results.push(definition);
+                        position.push([Object.keys(data).indexOf(index1), Object.keys(axe).indexOf(index2), Object.keys(theme).indexOf(index3)]);
                     }
                 }
             }
         }
 
-        return results;
+        return [results, position];
     };
 
     const id = () => {
@@ -97,16 +121,33 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
         }
     };
 
+    const handleClickLi = (ref: string) => {
+        console.log(ref);
+        const sectionId = ref;
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth", block : "start" });
+        }
+    };
+
     return (
-        <div className={`search-bar ${openGestion ? "center" : ""}`} id={id()}>
+        <div className={`search-bar ${openGestion ? "center" : ""} ${MenuSelectedOrNot}`} id={id()}>
             <input className="custom-input" type="text" placeholder="     Rechercher..." value={query} onChange={handleSearch} />
-            {query !== "" && (
-                <ul>
-                    {results.map((result, index) => (
-                        <li key={index}>{result.title} {result.level}</li>
-                    ))}
-                </ul>
-            )}
+            <div className="list-search">
+                <div className="list-content">
+                    {query !== "" && (
+                        <ul>
+                            {results.map((result, index) => {
+                                const pos = position[index];
+                                const ref = pos.length === 2 ? `debutant-def-${pos[0]}-${pos[1]}` : `expert-def-${pos[0]}-${pos[1]}-${pos}`;
+                                return (
+                                    <li key={index} onClick={() => handleClickLi(ref)}>{result.title} {result.level}</li>
+                                );
+                            })}
+                        </ul>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }

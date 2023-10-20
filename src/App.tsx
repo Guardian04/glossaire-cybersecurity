@@ -157,7 +157,7 @@ function App() {
                     <span></span>
                 </div>
             </div>
-            <SearchBar dataDebutant={DataDebutant} dataExpert={DataExpertContent} debutantIsHover={debutantIsHover} expertIsHover={expertIsHover} openGestion={openGestion} />
+            <SearchBar dataDebutant={DataDebutant} dataExpert={DataExpertContent} debutantIsHover={debutantIsHover} expertIsHover={expertIsHover} openGestion={openGestion} indexMenuDebutant={indexMenuDebutant} indexMenuExpert={indexMenuExpert} />
             <Debutant showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
             <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
         </div>
