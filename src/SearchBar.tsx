@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./SearchBar.css";
 
 interface TypeDebutant {
@@ -42,6 +42,7 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<any[]>([]);
     const [position, setPosition] = useState<any[]>([]);
+    const [actual, setActual] = useState(true);
 
     const MenuSelectedOrNot = indexMenuDebutant !== null || indexMenuExpert!== null ? "selected" : "";
 
@@ -128,6 +129,17 @@ function SearchBar({ dataDebutant, dataExpert, debutantIsHover, expertIsHover, o
         setResults([]);
         setPosition([]);
     };
+
+    useEffect(() => {
+        const oldResult = actual ? "debutant" : "expert";
+        const newResult = debutantIsHover ? "debutant" : "expert";
+        if (newResult !== oldResult) {
+            setResults([]);
+            setPosition([]);
+            setActual(newResult === "debutant" ? true : false);
+            setQuery("");
+        }
+    }, [actual, debutantIsHover,]);
 
     return (
         <div className={`search-bar ${openGestion ? "center" : ""} ${MenuSelectedOrNot}`} id={id()}>
