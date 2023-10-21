@@ -21,6 +21,7 @@ function App() {
     const [indexMenuExpert, setIndexMenuExpert] = useState<number | null>(null);
     const [indexMenuAxe, setIndexMenuAxe] = useState<number | null>(null);
     const [indexDefinition, setIndexDefinition] = useState<number | null>(null);
+    const [showAlert, setShowAlert] = useState(true);
 
     const handleClick = () => {
         setOpen(!open);
@@ -170,6 +171,10 @@ function App() {
         }
     }, [indexDefinition, indexMenuDebutant, indexMenuExpert, openDebutant, indexMenuAxe]);
 
+    const closeAlert = () => {
+        setShowAlert(false);
+    };
+
     return (
         <div className="app">
             <div className={`logo ${debutantIsHover ? "left" : "right"} ${openGestion ? "hidden" : "show"}`}>
@@ -188,6 +193,10 @@ function App() {
             <SearchBar dataDebutant={DataDebutant} dataExpert={DataExpertContent} debutantIsHover={debutantIsHover} expertIsHover={expertIsHover} openGestion={openGestion} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuAxe={indexMenuAxe} setIndexMenuAxe={setIndexMenuAxe} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} toggleLevel={toggleLevel} setIndexDefinition={setIndexDefinition} />
             <Debutant showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={debutantIsHover} onMouseOver={handleMouseOverDebutant} windowWidth={windowWidth} openLevel={openDebutant} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition}/>
             <Expert showSommaire={showSommaire} setShowSommaire={setShowSommaire} isHover={expertIsHover} onMouseOver={handleMouseOverExpert} windowWidth={windowWidth} openLevel={openExpert} openOrNot={openOrNot} openGestion={openGestion} onClick={handleClick} open={open} indexMenuDebutant={indexMenuDebutant} setIndexMenuDebutant={setIndexMenuDebutant} indexMenuExpert={indexMenuExpert} setIndexMenuExpert={setIndexMenuExpert} indexDefinition={indexDefinition} setIndexDefinition={setIndexDefinition} indexMenuAxe={indexMenuAxe} setIndexMenuAxe={setIndexMenuAxe} />
+            <div className={`alert ${showAlert ? "" : "hidden"}`}>
+                <h2>Il est préférable de visiter le site sur un écran 1920 x 1080 car le site n'est pas responsible pour le moment</h2>
+                <span onClick={() => closeAlert()}>CONTINUER</span>
+            </div>
         </div>
     );
 }

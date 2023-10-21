@@ -479,3 +479,43 @@
 .read-more#expert:hover {
     border-bottom-color: #FFA500;
 }
+
+.alert {
+    position: absolute;
+    width: 700px;
+    border-radius: 15px;
+    padding: 50px;
+    background-color: #FFA500;
+    box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    transition: transform 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert.hidden {
+    transform: translateY(-1000px);
+}
+
+.alert h2 {
+    font-size: 2rem;
+}
+
+.alert span {
+    margin-top: 35px;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 2rem;
+    color: var(--light);
+    background-color: var(--dark);
+    box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.alert span:hover {
+    color: #FFA500;
+    transform: scale(1.1);
+}
